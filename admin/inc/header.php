@@ -6,7 +6,10 @@
   <title>AdminLTE 3 | Dashboard</title>
     <?php
     error_reporting(E_ALL ^ E_NOTICE);
-
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header('location:index.php');
+    }
     ?>
 
   <!-- Google Font: Source Sans Pro -->

@@ -15,7 +15,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Welcome <?=$_SESSION['user']['name']?></a>
         </div>
       </div>
 
@@ -54,7 +54,7 @@
 
             <li class="nav-item">
             <a href="customer.php" class="nav-link <?=$active?>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Customers
                 <!-- <i class="right fas fa-angle-left"></i> -->
@@ -70,7 +70,7 @@
             ?>
           <li class="nav-item">
             <a href="product.php" class="nav-link <?=$active?>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-cubes"></i>
               <p>
                 Products
                 <!-- <i class="right fas fa-angle-left"></i> -->
@@ -86,13 +86,29 @@
             ?>
           <li class="nav-item">
             <a href="category.php" class="nav-link <?=$active?>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                Categories
                 <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
+            <?php
+            if(explode('/',$_SERVER['REQUEST_URI'])[3] == 'logout.php'){
+                $active = 'active';
+            }else{
+                $active = '';
+            }
+            ?>
+            <li class="nav-item">
+                <a href="logout.php" class="nav-link <?=$active?>">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Logout
+                        <!-- <i class="right fas fa-angle-left"></i> -->
+                    </p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

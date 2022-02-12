@@ -37,7 +37,7 @@ if(isset($_REQUEST['data_product_id'])){
 								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
 							</p>
 						</div> -->
-    				<p class="price"><span><?=$result['discount_price']?></span></p>
+    				<p class="price"><span><?=$result['discount_price']?> ₹</span></p>
     				<p><?=$result['small_text']?><</p>
                     <p><?=$result['large_text']?></p>
 						<div class="row mt-4">

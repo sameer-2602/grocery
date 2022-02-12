@@ -1,3 +1,7 @@
+<?php
+session_start();
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,7 +62,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,27 +71,102 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input autotcomplete="" type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <input autotcomplete="" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                             </div>
 
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="formType" value="login">
+                        <input autotcomplete="" type="hidden" name="formType" value="login">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn btn-primary btnsubLogin">Save changes</button>
+                        <button type="submit" name="submit" class="btn btn-primary btnsubLogin">Login</button>
                     </div>
                 </div>
 
             </div>
             </form>
         </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form method="post" action="javascript:;" id="regForm">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Registration</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="logins-part" class="content" role="tabpanel"
+                                 aria-labelledby="logins-part-trigger">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input autotcomplete="" name="name" type="text"
+
+                                           class="form-control" id="exampleInputEmail1"
+                                           placeholder="Enter name">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input autotcomplete="" type="text"
+
+                                           name="email" class="form-control" id="exampleInputEmail1"
+                                           placeholder="Enter Email">
+
+                                </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Password</label>
+                                        <input autotcomplete="" type="password"
+                                               name="password" class="form-control" id="exampleInputEmail1"
+                                               placeholder="Enter password">
+
+                                    </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    <input autotcomplete="" type="text"
+
+                                           name="address" class="form-control" id="exampleInputEmail1"
+                                           placeholder="Enter Address">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Gender</label>
+
+                                    <input autotcomplete="" type="radio" name="gender" value="male"
+                                  >Male
+                                    <input autotcomplete="" type="radio" name="gender" value="female"
+                                        >Female
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Contact</label>
+                                    <input autotcomplete="" type="text"
+                                           name="contact" class="form-control" id="exampleInputEmail1"
+                                           placeholder="Enter Contact">
+                                    <input autotcomplete="" type="hidden" name="role_id" value="2">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input autotcomplete="" type="hidden" name="formType" value="register">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" class="btn btn-primary btnSubReg">Register</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
   <?php
   error_reporting(E_ALL ^ E_NOTICE);
-
   ?>
 

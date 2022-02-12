@@ -22,10 +22,11 @@ if(isset($_POST) && $_POST['formType'] == 'register'){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $contact= $_POST['conact'];
+  $contact= $_POST['contact'];
   $address= $_POST['address'];
-  $gender= $_POST['gender'];
-$res = $con->query("insert into  users (name,email,password,contact,address,gender) values('$name','$email','$password','$contact','$address','$gender')");
+    $gender= $_POST['gender'];
+    $role_id= $_POST['role_id'];
+$res = $con->query("insert into  users (name,email,password,contact,address,gender,role_id) values('$name','$email','$password','$contact','$address','$gender','$role_id')");
 
 $res = $con->query("select * from users where email='$email' and password='$password'");
 $result = mysqli_fetch_assoc($res);

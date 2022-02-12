@@ -94,13 +94,38 @@
 
 <script>
     $(document).ready(function (){
+
+        $(".openReg").on('click',function (){
+            debugger
+            $('form#regForm')[0].reset();
+            $('form#loginForm')[0].reset();
+        })
+        $(".openLogin").on('click',function (){
+            debugger
+            $('form#regForm')[0].reset();
+            $('form#loginForm')[0].reset();
+        })
+
         $(".btnsubLogin").on('click',function (){
             $.ajax({
                 url:'ajax.php',
                 method:'post',
                 data:$('form#loginForm').serializeArray(),
                 success:function (){
-                    // location.reload();
+                    $('form#loginForm')[0].reset();
+                    location.reload();
+                }
+            })
+        });
+
+        $(".btnSubReg").on('click',function (){
+            $.ajax({
+                url:'ajax.php',
+                method:'post',
+                data:$('form#regForm').serializeArray(),
+                success:function (){
+                    $('form#regForm')[0].reset();
+                    location.reload();
                 }
             })
         })

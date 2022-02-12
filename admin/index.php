@@ -1,12 +1,13 @@
 <?php
 include './inc/Connection.php';
-
+session_start();
 if(isset($_POST['submit'])){
 $email = $_POST['email'];
 $password = $_POST['password'];
 $res = $con->query("select * from users where email='$email' and password='$password'");
 $result  = mysqli_Fetch_Assoc($res);
 if($result){
+    $_SESSION['user'] = $result;
   header('location:dashboard.php');
 }else{
   $error= "Invalid Id or Password";
