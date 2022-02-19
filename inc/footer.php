@@ -133,3 +133,44 @@
 </script>
 </body>
 </html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<style>
+    /* div#toast-container{
+        background:green !important;
+        opacity: 1;
+    }
+    .toast-message{
+        background:unset;
+      
+    } */
+    </style>
+<?php 
+  
+if(isset($_SESSION['msg'])){?>
+<script>
+    // setTimeout(() => {
+        toastr.options = {
+  tapToDismiss: true,
+  toastClass: 'toast',
+  containerId: 'toast-container',
+  debug: false,
+  fadeIn: 300,
+  fadeOut: 1000,
+  extendedTimeOut: 5000,
+  iconClass: 'toast-info',
+  positionClass: 'toast-top-right',
+  timeOut: 5000, // Set timeOut to 0 to make it sticky
+  titleClass: 'toast-title',
+  messageClass: 'toast-message'
+}
+        toastr.success("<?=$_SESSION['msg']?>"+"<?=$_SESSION['user']['name'];?>");
+
+    // }, 100);
+</script>
+<?php 
+unset($_SESSION['msg']);
+}  
+  
+  ?>
+

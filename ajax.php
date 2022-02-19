@@ -13,6 +13,7 @@ $result = mysqli_fetch_assoc($res);
 // exit;
   if($result){
     $_SESSION['user'] = $result;
+    $_SESSION['msg'] = "Welcome "; 
   }
 //   print_r($_SESSION);
 //   exit;
@@ -32,6 +33,7 @@ $res = $con->query("select * from users where email='$email' and password='$pass
 $result = mysqli_fetch_assoc($res);
   if($result){
     $_SESSION['user'] = $result;
+    $_SESSION['msg'] = "Welcome "; 
   }
   // header('location:index.php');
   echo json_encode(['status'=>200]);
