@@ -20,7 +20,7 @@ if(isset($_REQUEST['data_product_id'])){
     				<a href="./assets/images/<?=$result['image']?>" class="image-popup"><img src="./assets/images/<?=$result['image']?>" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>Bell Pepper</h3>
+    				<h3><?=$result['name']?></h3>
     				<!-- <div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">5.0</a>
@@ -54,7 +54,7 @@ if(isset($_REQUEST['data_product_id'])){
 	                </div> -->
 		            </div>
 							</div>
-							<div class="w-100"></div>
+							<!-- <div class="w-100"></div>
 							<div class="input-group col-md-6 d-flex mb-3">
 	             	<span class="input-group-btn mr-2">
 	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
@@ -67,13 +67,13 @@ if(isset($_REQUEST['data_product_id'])){
 	                     <i class="ion-ios-add"></i>
 	                 </button>
 	             	</span>
-	          	</div>
+	          	</div> -->
 	          	<div class="w-100"></div>
 	          	<!-- <div class="col-md-12">
 	          		<p style="color: #000;">600 kg available</p>
 	          	</div> -->
           	</div>
-          	<p><input type="submit" class="btn btn-black py-3 px-5" name="submit" value="Add to Cart"></a></p>
+          	<p><a href="addcart.php?data_product_id=<?=$id?>" class="btn btn-black py-3 px-5" name="submit" value="Add to Cart">Add to Cart</a></p>
     			</div>
     		</div>
     	</div>

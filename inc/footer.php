@@ -135,16 +135,6 @@
 </html>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<style>
-    /* div#toast-container{
-        background:green !important;
-        opacity: 1;
-    }
-    .toast-message{
-        background:unset;
-      
-    } */
-    </style>
 <?php 
   
 if(isset($_SESSION['msg'])){?>

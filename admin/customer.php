@@ -31,7 +31,7 @@ $res = $con->query("select * from users where role_id =2");
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Customer</h3>
-                <a href="editcus.php?dataid=null" class="btn btn-primary float-right">Add New</a>
+                <!-- <a href="editcus.php?dataid=null" class="btn btn-primary float-right">Add New</a> -->
               </div>
               <!-- /.card-header -->
               <div class="card-body">

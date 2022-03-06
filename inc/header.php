@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods</title>
+    <title>FRESH GROCERIES</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,17 +40,35 @@ session_start();
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
 	    		<div class="col-lg-12 d-block">
 		    		<div class="row d-flex">
-		    			<div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 98</span>
+		    			<div class="col-md-9 pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+						    <!-- <span class="text"></span> -->
+                            <span class="text">freshgrocery@gmail.com</span>
 					    </div>
-					    <div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
+					    <div class="col-md-3 pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+                            
+						   
+                            <?php if($_SESSION['user']): ?>
+                                <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text"> 
+
+                            <?=$_SESSION['user']['name']?>
+                            </span>
 					    </div>
-					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+                <?php endif;?>
+                <?php if(!$_SESSION['user']): ?>
+                    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text"> 
+
+                            
+                            </span>
 					    </div>
+                <?php endif;?></div>
+
+
+
+					   
 				    </div>
 			    </div>
 		    </div>

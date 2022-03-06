@@ -1,3 +1,42 @@
+<?php 
+
+error_reporting(E_ALL ^ E_NOTICE);  
+
+session_start();
+echo "<pre>";
+$array = $_POST;
+$match = 'cart_id-';
+$finalarrtoPush = array();
+$dataArray= array();
+// print_r($_POST);
+// exit;
+foreach($array['cart_id'] as $key =>  $val){
+	// print_r($val);
+	// exit;
+	$finalarrtoPush['product_id'] = $_POST["product_id-$val"];
+	$finalarrtoPush['cart_id'] = $val;
+	$finalarrtoPush['qty'] = $array['quantity'][$key];
+	$finalarrtoPush['image'] = $_POST["image-$val"];
+	$finalarrtoPush['price'] = $_POST["price-$val"];
+	$finalarrtoPush['name'] = $_POST["name-$val"];
+	array_push($dataArray,$finalarrtoPush);
+}
+
+include './inc/Connection.php';
+
+foreach($dataArray as $val){
+	$product_id = $val['product_id'];
+	$cart_id = $val['cart_id'];
+	$qty = $val['qty'];
+	$image = $val["image"];
+	$price = $val["price"];
+	$user_id = $_SESSION["user"]['id'];
+	// print_r($_SESSION);
+	// exit;
+	$ins = "INSERT INTO order1(`product_id`, `image`, `price`, `cart_id`, `qty`, `user_id`) values('$product_id','$image','$price','$cart_id',$qty,$user_id)";
+	$con->query($ins);
+}
+?>
 <?php
 include './inc/header.php';
 include './inc/menu.php';

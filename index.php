@@ -146,7 +146,7 @@ $related_products = $con->query("select * from product");
     	</div>
     </section>
 		
-		<section class="ftco-section img" style="background-image: url(./assets/images/bg_3.jpg);">
+		<!-- <section class="ftco-section img" style="background-image: url(./assets/images/bg_3.jpg);">
     	<div class="container">
 				<div class="row justify-content-end">
           <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -164,7 +164,7 @@ $related_products = $con->query("select * from product");
           </div>
         </div>   		
     	</div>
-    </section>
+    </section> -->
 
 
 
