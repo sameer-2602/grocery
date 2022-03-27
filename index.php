@@ -178,7 +178,7 @@ $related_products = $con->query("select * from product");
           <div class="col-md-6 d-flex align-items-center">
             <form action="#" class="subscribe-form">
               <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
+                <input type="text" class="form-control" placeholder="Enter email address"required>
                 <input type="submit" value="Subscribe" class="submit px-3">
               </div>
             </form>

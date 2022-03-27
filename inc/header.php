@@ -1,7 +1,9 @@
 <?php
 session_start();
  ?>
-
+<?php
+  error_reporting(E_ALL ^ E_NOTICE);
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,7 +51,7 @@ session_start();
 					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
                             
 						   
-                            <?php if($_SESSION['user']): ?>
+                            <?php if($_SESSION &&  $_SESSION['user']): ?>
                                 <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
 						    <span class="text"> 
 
@@ -90,12 +92,12 @@ session_start();
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input autotcomplete="" type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input autotcomplete="" type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input autotcomplete="" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <input autotcomplete="" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password"required>
                             </div>
 
                     </div>
@@ -127,15 +129,15 @@ session_start();
                                     <input autotcomplete="" name="name" type="text"
 
                                            class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter name">
+                                           placeholder="Enter name"required>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input autotcomplete="" type="text"
+                                    <input autotcomplete="" type="email"
 
                                            name="email" class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter Email">
+                                           placeholder="Enter Email" required="">
 
                                 </div>
 
@@ -143,7 +145,7 @@ session_start();
                                         <label for="exampleInputEmail1">Password</label>
                                         <input autotcomplete="" type="password"
                                                name="password" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Enter password">
+                                               placeholder="Enter password" required>
 
                                     </div>
 
@@ -152,7 +154,7 @@ session_start();
                                     <input autotcomplete="" type="text"
 
                                            name="address" class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter Address">
+                                           placeholder="Enter Address"required>
 
                                 </div>
                                 <div class="form-group">
@@ -185,7 +187,5 @@ session_start();
                 </div>
             </form>
         </div>
-  <?php
-  error_reporting(E_ALL ^ E_NOTICE);
-  ?>
+  
 

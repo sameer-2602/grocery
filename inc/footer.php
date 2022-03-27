@@ -119,6 +119,24 @@
         });
 
         $(".btnSubReg").on('click',function (){
+
+            $("#regForm form").validate({
+		rules: {
+		 	name: {
+			 	required: true
+			 	
+		 },
+		 	email: {
+			 	required: true
+		 }
+         address: {
+			 	required: true
+		 }
+         contact: {
+			 	required: true
+		 }
+		},
+		submitHandler: function(form) {
             $.ajax({
                 url:'ajax.php',
                 method:'post',
@@ -128,8 +146,40 @@
                     location.reload();
                 }
             })
+          }
+	});
+
+
+
+
+
+           
         })
     })
+
+  
+
+
+
+    $(function () {        
+
+$("#newModalForm").validate({
+    rules: {
+        pName: {
+            required: true,
+            minlength: 8
+        },
+        action: "required"
+    },
+    messages: {
+        pName: {
+            required: "Please enter some data",
+            minlength: "Your data must be at least 8 characters"
+        },
+        action: "Please provide some data"
+    }
+});
+});
 </script>
 </body>
 </html>
