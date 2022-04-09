@@ -40,24 +40,19 @@ $res = $con->query("select * from orders");
                   <tr>
                     <th>Id</th>
                     <th>Productid</th>
+                    <th>ProductName</th>
                     <th>userid</th>
                     <th>purchaseDate</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                       <?php foreach($res as $val): ?>
                         <tr>
                           <td><?=$val['id']?></td>
-                          <td><?=$val['productid']?></td>
-                          <td><?=$val['userid']?></td>
+                          <td><?=$val['product_id']?></td>
+                          <td><?=$val['product_name']?></td>
+                          <td><?=$val['user_id']?></td>
                           <td><?=$val['purchaseDate']?></td>
-                          <td>
-                          <a href="editorder.php?dataid=<?=$val['id']?>" class="btn btn-primary">Edit</a>
-                          <a href="deleteorder.php?dataid=<?=$val['id']?>" class="btn btn-danger">Delete</a>
-
-
-                          </td>
                       </tr>
                         <?php  endforeach?>
                   </tbody>

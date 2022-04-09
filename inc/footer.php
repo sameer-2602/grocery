@@ -88,25 +88,26 @@
 <script src="./assets/js/jquery.animateNumber.min.js"></script>
 <script src="./assets/js/bootstrap-datepicker.js"></script>
 <script src="./assets/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="./assets/js/google-map.js"></script>
+<!-- <script src=""></script> -->
+<!-- <script src="./assets/js/google-map.js"></script> -->
 <script src="./assets/js/main.js"></script>
 
 <script>
     $(document).ready(function (){
 
         $(".openReg").on('click',function (){
-            debugger
             $('form#regForm')[0].reset();
             $('form#loginForm')[0].reset();
         })
         $(".openLogin").on('click',function (){
-            debugger
             $('form#regForm')[0].reset();
             $('form#loginForm')[0].reset();
         })
 
-        $(".btnsubLogin").on('click',function (){
+   
+});
+         $(".btnsubLogin").on('click',function (){
+            debugger
             $.ajax({
                 url:'ajax.php',
                 method:'post',
@@ -119,67 +120,36 @@
         });
 
         $(".btnSubReg").on('click',function (){
-
-            $("#regForm form").validate({
-		rules: {
-		 	name: {
-			 	required: true
-			 	
-		 },
-		 	email: {
-			 	required: true
-		 }
-         address: {
-			 	required: true
-		 }
-         contact: {
-			 	required: true
-		 }
-		},
-		submitHandler: function(form) {
-            $.ajax({
-                url:'ajax.php',
-                method:'post',
-                data:$('form#regForm').serializeArray(),
-                success:function (){
-                    $('form#regForm')[0].reset();
-                    location.reload();
-                }
-            })
-          }
-	});
-
-
-
-
-
-           
-        })
-    })
-
-  
-
-
-
-    $(function () {        
-
-$("#newModalForm").validate({
-    rules: {
-        pName: {
-            required: true,
-            minlength: 8
-        },
-        action: "required"
-    },
-    messages: {
-        pName: {
-            required: "Please enter some data",
-            minlength: "Your data must be at least 8 characters"
-        },
-        action: "Please provide some data"
-    }
-});
-});
+            
+           $("#regForm form").validate({
+    		rules: {
+    		 	name: {
+    			 	required: true
+    			 	
+    		 },
+    		 	email: {
+    			 	required: true
+    		 },
+             address: {
+    			 	required: true
+    		 },
+             contact: {
+    			 	required: true
+    		 }
+    		},
+    		submitHandler: function(form) {
+                $.ajax({
+                    url:'ajax.php',
+                    method:'post',
+                    data:$('form#regForm').serializeArray(),
+                    success:function (){
+                        $('form#regForm')[0].reset();
+                        location.reload();
+                    }
+                })
+              }
+    	});
+       });
 </script>
 </body>
 </html>

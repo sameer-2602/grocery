@@ -1,21 +1,21 @@
 <?php 
-error_reporting(E_ALL ^ E_NOTICE);  
+include './inc/header.php';
+include './inc/menu.php'
 
+?>
+<?php 
 include './inc/Connection.php';
-if(!isset($_SESSION)){
-	session_start();
-}
 if(isset($_SESSION['user'])){
 	$user_id =  $_SESSION['user']['id'];
 	if($_REQUEST['data_product_id']){
 		$id =  $_REQUEST['data_product_id'];
 		$sql = "select * from product where id=$id";
 		$sqlselect 	= $con->query($sql);
+		
 		if($sqlselect->num_rows > 0){
 			$product = mysqli_fetch_assoc($sqlselect);
 		}else{
-		$product = [];
-
+			$product = [];
 		}
 		$product_id = $product['id'];
 		$name = $product['name'];
@@ -25,8 +25,10 @@ if(isset($_SESSION['user'])){
 		
 		
 		$sql =  "select * from cart where user_id='$user_id' and product_id = $product_id";
+		
 		$res = $con->query($sql);
-		if($res->num_rows == 1){
+		// print_r($sql);
+		if($res && $res->num_rows == 1){
 			?><script>alert('product already exist in cart'); window.location.back();</script>
 	<?php		 
 		}else{
@@ -38,19 +40,21 @@ if(isset($_SESSION['user'])){
 	}
 	$sql =  "select * from cart where user_id=$user_id";
 	$productList = $con->query($sql);
+	// print_r(mysqli_fetch_all($productList));
+	// exit;
 	$CartItemList= array();
+
 	foreach($productList as $val){
 		$productid = $val['product_id'];
 		$sql =  "select * from product where id=$productid";
 		$resultSingleproduct = $con->query($sql);
-		// print_r($resultSingleproduct);
-		// exit;
 		$singlitem = mysqli_fetch_assoc($resultSingleproduct);
-		$singlitem['qty'] = 1;
+		$singlitem['qty'] = $val['qty'] ? $val['qty'] : 1;
 		$singlitem['cart_id'] = $val['id'];
-		$singlitem['total'] = $singlitem['qty'] * $singlitem['discount_price'];  
+		$singlitem['total'] = $val['qty'] ? ($val['qty'] * $singlitem['discount_price']) :  (1 * $singlitem['discount_price']);  
 		array_push($CartItemList,$singlitem);
-	}
+}
+
 	// echo "<pre>";
 	// print_r($CartItemList);
 	// exit;
@@ -60,11 +64,7 @@ if(isset($_SESSION['user'])){
 }
 ?>
     <!-- END nav -->
-<?php 
-include './inc/header.php';
-include './inc/menu.php'
 
-?>
  <section class="ftco-section ftco-cart">
 			<div class="container">
 				<div class="row">
@@ -82,7 +82,7 @@ include './inc/menu.php'
 						      </tr>
 						    </thead>
 						    <tbody>
-							<form method="post" id="checkoutForm" action="checkout.php">
+							<form method="post" id="checkoutForm" action="javascript:;">
 							<?php if(($CartItemList)): foreach($CartItemList as $val):?>
 							
 						      <tr class="text-center-<?=$val['cart_id']?>">
@@ -99,17 +99,19 @@ include './inc/menu.php'
 						        
 						        <td class="quantity1">
 						        	<div class="input-group mb-3">
-					             	<input type="number" data-cartid="<?=$val['cart_id']?>" data-price="<?=$val['discount_price']?>" name="quantity[]" class="quantity form-control input-number" value="1" min="1" max="100">
+					             	<input type="number" data-cartid="<?=$val['cart_id']?>" data-price="<?=$val['discount_price']?>" name="quantity[]" class="quantity-update form-control input-number" 
+					             	value="<?php 
+					             	if(!$val['qty']) { echo '1';}else{ echo  $val['qty'];} ?>" min="1" max="100">
 					          	</div>
 					          </td>
 						        <input type="hidden" name="cart_id[]" value="<?=$val['cart_id']?>">
-						        <input type="hidden" name="product_id-<?=$val['cart_id']?>" value="<?=$val['id']?>">
-						        <input type="hidden" name="cart_id-<?=$val['cart_id']?>" value="<?=$val['cart_id']?>">
-						        <input type="hidden" name="name-<?=$val['cart_id']?>" value="<?=$val['name']?>">
-						        <input type="hidden" name="image-<?=$val['cart_id']?>" value="<?=$val['image']?>">
-						        <input type="hidden" name="price-<?=$val['cart_id']?>" value="<?=$val['discount_price']?>">
+						        <input type="hidden" name="product_id[]" value="<?=$val['id']?>">
+						        <input type="hidden" name="cart_id[]" value="<?=$val['cart_id']?>">
+						        <input type="hidden" name="name[]" value="<?=$val['name']?>">
+						        <input type="hidden" name="image[]" value="<?=$val['image']?>">
+						        <input type="hidden" name="price[]" value="<?=$val['discount_price']?>">
 						        <td class="total">
-								<?=$val['discount_price'] * 1?>
+								<?=$val['total']?>
 								</td>
 						      </tr><!-- END TR-->
 							  <?php endforeach; else:?>
@@ -188,7 +190,7 @@ include './inc/footer.php';
 	// id
 	}, 1000);
 	
-	$(".quantity").on('change',function(){
+	$(".quantity-update").on('change',function(){
 		var quantity = $(this).val();
 		var price = $(this).data("price");
 		var total =  parseFloat(quantity) * parseFloat(price); 
@@ -199,34 +201,35 @@ include './inc/footer.php';
 			sum+=Number(parseFloat($(this).text()));
         });
 		$(".finalTotal").html("RS."+sum);
+		$.ajax({
+			url:'ajax.php?type=quantity_update',
+			method:'POST',
+			data:{'cart_id':cart_id,'qty':quantity,'price':price,'total':total}
+
+
+		})
 	})
 	
-	// $(".checkout").on('click',function(){	
-	// 	if($("form#checkoutForm").submit()){
+	$(".checkout").on('click',function(){	
+		if($("form#checkoutForm").submit()){
 
-	// 	var formData = $("#checkoutForm").serializeArray();
-	// 	console.log(formData);
-	// 	var data = [];
-	// 	var finalArr = [];
-	// 	// $.each(formData,function(key,value){
-	// 	// 	// data[key] = [];
-	// 	// 	if(value.name == "quantity"){
-	// 	// 		data['qty'] = value.value
-	// 	// 	}
-	// 	// 	if(value.name == "cart_id"){
-	// 	// 		data['cart_id'] = value.value
-	// 	// 	}
-	// 	// 	if(value.name == "total"){
-	// 	// 		data['total'] = value.value
-	// 	// 	}
-	// 	// 	if(value.name == "product_id"){
-	// 	// 		data['product_id'] = value.value
-	// 	// 	}
-	// 	// 	if(data['qty'] && data['price'] && ) 
-	// 	// })
-	// 	console.log(data);
-	// 	}
-	// })
+		var formData = $("#checkoutForm").serializeArray();
+		console.log(formData);
+		debugger
+		var data = [];
+		var finalArr = [];
+
+		$.ajax({
+			url:'ajax.php?type=checkout',
+			method:'POST',
+			data:formData,
+			success:function(response){
+				window.location.href = "checkout.php";
+			}
+
+		})
+	}
+})
 	</script>
   <!-- loader -->
  

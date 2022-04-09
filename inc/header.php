@@ -1,8 +1,9 @@
+
 <?php
 session_start();
- ?>
-<?php
   error_reporting(E_ALL ^ E_NOTICE);
+  error_reporting(E_ALL ^ E_WARNING);
+
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@ session_start();
                             </span>
 					    </div>
                 <?php endif;?>
-                <?php if(!$_SESSION['user']): ?>
+                <?php if(!$_SESSION): ?>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
 						    <span class="text"> 
 

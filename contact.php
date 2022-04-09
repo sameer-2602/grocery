@@ -9,10 +9,10 @@ $email =  $_POST['email'];
 $sub =  $_POST['subject'];
 $des =  $_POST['description'];
 $res = $con->query("insert into feedback(name,email,subject,description) VALUES('$name','$email','$sub','$des')");
-
 if($res) {
-  $success = "Successfully submitted";
-header('location:contact.php');
+$success = "Successfully submitted";
+?>
+<?php
 $success = null;
 }else{
   $success = null;

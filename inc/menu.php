@@ -23,12 +23,11 @@
 	          <!-- <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li> -->
 
                 <li class="nav-item cta cta-colored"><a href="addcart.php" class="nav-link"><span class="icon-shopping_cart">cart</span></a></li>
-
                 <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-                <?php if($_SESSION['user']): ?>
+                <?php if($_SESSION && $_SESSION['user']): ?>
                     <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
                 <?php endif;?>
-                <?php if(!$_SESSION['user']): ?>
+                <?php if(!$_SESSION): ?>
                     <li class="nav-item"><a href="#"  data-toggle="modal" data-target="#exampleModal" class="nav-link openLogin">Login</a></li>
                     <li class="nav-item"><a href="#"  data-toggle="modal" data-target="#exampleModal1" class="nav-link openReg">Register</a></li>
                 <?php endif;?>

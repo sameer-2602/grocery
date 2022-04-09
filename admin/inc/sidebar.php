@@ -93,6 +93,22 @@
               </p>
             </a>
           </li>
+          <?php
+            if(explode('/',$_SERVER['REQUEST_URI'])[3] == 'order.php'){
+                $active = 'active';
+            }else{
+                $active = '';
+            }
+            ?>
+          <li class="nav-item">
+            <a href="order.php" class="nav-link <?=$active?>">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+               Orders
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+          </li>
             <?php
             if(explode('/',$_SERVER['REQUEST_URI'])[3] == 'logout.php'){
                 $active = 'active';
